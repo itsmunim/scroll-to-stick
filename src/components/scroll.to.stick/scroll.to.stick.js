@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import debounce from 'lodash/debounce';
 
 import { SCROLL_DIRECTIONS, ScrollHelper } from './scroll.helper';
 
@@ -8,7 +9,7 @@ function ScrollToStick({ applyOn, offset, children }) {
     top: 0,
     right: 0,
     left: 0,
-    transition: 'top 0.3s ease-in-out',
+    transition: 'top 0.3s ease-out',
   };
 
   const getOnScrollHandler = (container, elem) => {
@@ -26,7 +27,7 @@ function ScrollToStick({ applyOn, offset, children }) {
     Object.assign(applyOnElem.style, style);
 
     const onScroll = getOnScrollHandler(window, applyOnElem);
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', debounce(onScroll, 10));
 
     const cleanUp = () => {
       window.removeEventListener('scroll', onScroll);
