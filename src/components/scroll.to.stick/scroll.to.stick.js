@@ -15,7 +15,7 @@ function ScrollToStick({ applyOn, offset, children }) {
   const getOnScrollHandler = (container, elem) => {
     let lastScrollAmount = 0;
     return () => {
-      const scrollAmount = container.scrollY;
+      const scrollAmount = Math.abs(container.scrollY);
       const direction = scrollAmount > lastScrollAmount ? 'down' : 'up';
       lastScrollAmount = scrollAmount;
       elem.style.top = direction === 'down' ? `-${offset}px` : 0;
