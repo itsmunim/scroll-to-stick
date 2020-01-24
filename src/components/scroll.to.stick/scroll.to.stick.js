@@ -40,9 +40,9 @@ function ScrollToStick({ applyOn, offset, children }) {
 }
 
 ScrollToStick.propTypes = {
-  applyOn: PropTypes.oneOfType(React.Ref).isRequired,
+  applyOn: PropTypes.func.isRequired,
   offset: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType(React.Component).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default ScrollToStick;
