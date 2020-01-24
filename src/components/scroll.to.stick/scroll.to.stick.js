@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import debounce from 'lodash/debounce';
+import ScrollHelper from './scroll.helper';
 
 import { SCROLL_DIRECTIONS, ScrollHelper } from './scroll.helper';
 
@@ -9,20 +9,17 @@ function ScrollToStick({ applyOn, offset, children }) {
     top: 0,
     right: 0,
     left: 0,
-    transition: 'top 0.3s ease-out',
+    transition: 'top 100ms ease-in',
   };
 
-  const getOnScrollHandler = (container, elem) => {
-    let lastScrollAmount = 0,
-      lastKnownDirection;
-    return () => {
-      const scrollAmount = Math.abs(container.scrollY);
-      const direction = scrollAmount > lastScrollAmount ? 'down' : 'up';
-      lastScrollAmount = scrollAmount;
+  const scrollHelper = new ScrollHelper();
+
+  const onScrollChange = (elem) => {
+    return (scrollInfo) => {
+      const { direction, lastKnownDirection } = scrollInfo;
       if (direction !== lastKnownDirection) {
         elem.style.top = direction === 'down' ? `-${offset}px` : 0;
       }
-      lastKnownDirection = direction;
     };
   };
 
@@ -30,14 +27,11 @@ function ScrollToStick({ applyOn, offset, children }) {
     const applyOnElem = applyOn.current;
     Object.assign(applyOnElem.style, style);
 
-    const onScroll = getOnScrollHandler(window, applyOnElem);
-    window.addEventListener('scroll', debounce(onScroll, 10));
+    scrollHelper.attachHook(onScrollChange(applyOnElem));
 
-    const cleanUp = () => {
-      window.removeEventListener('scroll', onScroll);
+    return () => {
+      scrollHelper.decommission();
     };
-
-    return cleanUp;
   });
 
   return <>{children}</>;
