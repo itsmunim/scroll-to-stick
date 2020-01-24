@@ -1,6 +1,11 @@
 import debounce from 'lodash/debounce';
 
-export default function ScrollHelper() {
+const SCROLL_DIRECTIONS = {
+  UP: 'up',
+  DOWN: 'down',
+};
+
+function ScrollHelper() {
   this.lastScrollAmount = 0;
   this.threshold = 5;
   this.scrollable = document.documentElement;
@@ -15,8 +20,9 @@ export default function ScrollHelper() {
 
   const getBoundedScrollAmount = () => {
     const boundary = getScrollBoundary();
-    const { scrollTop } = this.scrollable;
-    return scrollTop > boundary.max ? boundary.max : scrollTop < boundary.min ? boundary.min : scrollTop;
+    let { scrollTop } = this.scrollable;
+    scrollTop = scrollTop < boundary.min ? boundary.min : scrollTop;
+    return scrollTop > boundary.max ? boundary.max : scrollTop;
   };
 
   const onScroll = () => {
@@ -25,7 +31,7 @@ export default function ScrollHelper() {
     let direction;
 
     if (delta > this.threshold) {
-      direction = scrollAmount > this.lastScrollAmount ? 'down' : 'up';
+      direction = scrollAmount > this.lastScrollAmount ? SCROLL_DIRECTIONS.DOWN : SCROLL_DIRECTIONS.UP;
       if (this.onScrollChange) {
         this.onScrollChange({ delta, direction, lastKnownDirection: this.lastKnownDirection });
       }
@@ -70,3 +76,5 @@ export default function ScrollHelper() {
     return this.lastKnownDirection;
   };
 }
+
+export { SCROLL_DIRECTIONS, ScrollHelper };

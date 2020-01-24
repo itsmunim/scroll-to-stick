@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import ScrollHelper from './scroll.helper';
+import PropTypes from 'prop-types';
 
-import { SCROLL_DIRECTIONS, ScrollHelper } from './scroll.helper';
+import { SCROLL_DIRECTIONS, ScrollHelper } from '../../utils/scroll.helper/scroll.helper';
 
 function ScrollToStick({ applyOn, offset, children }) {
   const style = {
@@ -14,14 +14,16 @@ function ScrollToStick({ applyOn, offset, children }) {
 
   const scrollHelper = new ScrollHelper();
 
+  /* eslint-disable no-param-reassign */
   const onScrollChange = (elem) => {
     return (scrollInfo) => {
       const { direction, lastKnownDirection } = scrollInfo;
       if (direction !== lastKnownDirection) {
-        elem.style.top = direction === 'down' ? `-${offset}px` : 0;
+        elem.style.top = direction === SCROLL_DIRECTIONS.DOWN ? `-${offset}px` : 0;
       }
     };
   };
+  /* eslint-enable no-param-reassign */
 
   useEffect(() => {
     const applyOnElem = applyOn.current;
@@ -36,5 +38,11 @@ function ScrollToStick({ applyOn, offset, children }) {
 
   return <>{children}</>;
 }
+
+ScrollToStick.propTypes = {
+  applyOn: PropTypes.oneOfType(React.Ref).isRequired,
+  offset: PropTypes.number.isRequired,
+  children: PropTypes.oneOfType(React.Component).isRequired,
+};
 
 export default ScrollToStick;
