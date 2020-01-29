@@ -12,7 +12,7 @@ function ScrollToStick({ applyOn, offset, children }) {
     transition: 'top 100ms ease-in',
   };
 
-  const scrollHelper = new ScrollHelper();
+  const scrollHelper = new ScrollHelper(document);
 
   /* eslint-disable no-param-reassign */
   const onScrollChange = (elem) => {

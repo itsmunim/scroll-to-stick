@@ -5,7 +5,7 @@ const SCROLL_DIRECTIONS = {
   DOWN: 'down',
 };
 
-function ScrollHelper() {
+function ScrollHelper(document) {
   this.lastScrollAmount = 0;
   this.threshold = 5;
   this.scrollable = document.documentElement;
