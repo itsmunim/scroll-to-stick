@@ -40,7 +40,7 @@ function ScrollToStick({ applyOn, offset, children }) {
 }
 
 ScrollToStick.propTypes = {
-  applyOn: PropTypes.func.isRequired,
+  applyOn: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   offset: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
 };
