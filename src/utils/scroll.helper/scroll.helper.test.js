@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 import { ScrollHelper } from './scroll.helper';
 
 jest.useFakeTimers();
@@ -15,7 +16,7 @@ describe('ScrollHelper', () => {
     addEventListener: (eventType, cb) => {
       mockDocument._map[eventType] = cb;
     },
-    removeEventListener: (eventType, cb) => {
+    removeEventListener: (eventType) => {
       delete mockDocument._map[eventType];
     },
     documentElement: {
