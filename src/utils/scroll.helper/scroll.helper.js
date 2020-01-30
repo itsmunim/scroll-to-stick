@@ -68,13 +68,6 @@ function ScrollHelper(document) {
   this.setThreshold = (threshold) => {
     this.threshold = threshold;
   };
-
-  /**
-   * Returns the last known direction of scrolling
-   */
-  this.getLastKnownDirection = () => {
-    return this.lastKnownDirection;
-  };
 }
 
 export { SCROLL_DIRECTIONS, ScrollHelper };
