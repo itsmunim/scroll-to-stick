@@ -64,4 +64,17 @@ describe('ScrollToStick', () => {
 
     expect(applyOnElem.style.top).toEqual('0px');
   });
+
+  it('should not change the element position if the consecutive scrolls are on same direction', () => {
+    document.documentElement.scrollTop = 100;
+    document.dispatchEvent(new CustomEvent('scroll'));
+    const applyOnElem = wrapper.find('#elem-apply-on').get(0).ref.current;
+    jest.runAllTimers();
+    expect(applyOnElem.style.top).toEqual('-60px');
+
+    document.documentElement.scrollTop = 150;
+    document.dispatchEvent(new CustomEvent('scroll'));
+    jest.runAllTimers();
+    expect(applyOnElem.style.top).toEqual('-60px');
+  });
 });
