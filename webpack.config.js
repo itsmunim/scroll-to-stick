@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve('dist');
 const APP_DIR = path.resolve('src');
@@ -6,9 +7,8 @@ const APP_DIR = path.resolve('src');
 const config = {
   mode: 'production',
   entry: {
-    bundle: APP_DIR + '/index.js'
+    'scroll.to.stick': APP_DIR + '/index.js'
   },
-  devtool: 'source-map',
   output: {
     path: BUILD_DIR,
     filename: '[name].js'
@@ -30,6 +30,7 @@ const config = {
     ]
   },
   optimization: {
+    minimize: true,
     splitChunks: {
       cacheGroups: {
         commons: {
