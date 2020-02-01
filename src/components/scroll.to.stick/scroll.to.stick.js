@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
-import { SCROLL_DIRECTIONS, ScrollHelper } from '../../utils/scroll.helper/scroll.helper';
+import { SCROLL_DIRECTIONS, ScrollHelper } from './scroll.helper';
 
 function ScrollToStick({ applyOn, offset, children }) {
   const style = {
@@ -9,40 +8,34 @@ function ScrollToStick({ applyOn, offset, children }) {
     top: 0,
     right: 0,
     left: 0,
-    transition: 'top 100ms ease-in',
+    transition: 'top 0.3s ease-in-out',
   };
 
-  const scrollHelper = new ScrollHelper();
-
-  /* eslint-disable no-param-reassign */
-  const onScrollChange = (elem) => {
-    return (scrollInfo) => {
-      const { direction, lastKnownDirection } = scrollInfo;
-      if (direction !== lastKnownDirection) {
-        elem.style.top = direction === 'down' ? `-${offset}px` : 0;
-      }
+  const getOnScrollHandler = (container, elem) => {
+    let lastScrollAmount = 0;
+    return () => {
+      const scrollAmount = container.scrollY;
+      const direction = scrollAmount > lastScrollAmount ? 'down' : 'up';
+      lastScrollAmount = scrollAmount;
+      elem.style.top = direction === 'down' ? `-${offset}px` : 0;
     };
   };
-  /* eslint-enable no-param-reassign */
 
   useEffect(() => {
     const applyOnElem = applyOn.current;
     Object.assign(applyOnElem.style, style);
 
-    scrollHelper.attachHook(onScrollChange(applyOnElem));
+    const onScroll = getOnScrollHandler(window, applyOnElem);
+    window.addEventListener('scroll', onScroll);
 
-    return () => {
-      scrollHelper.decommission();
+    const cleanUp = () => {
+      window.removeEventListener('scroll', onScroll);
     };
+
+    return cleanUp;
   });
 
   return <>{children}</>;
 }
-
-ScrollToStick.propTypes = {
-  applyOn: PropTypes.oneOfType(React.Ref).isRequired,
-  offset: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType(React.Component).isRequired,
-};
 
 export default ScrollToStick;
