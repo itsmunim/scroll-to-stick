@@ -2,7 +2,7 @@ import debounce from 'lodash/debounce';
 
 const SCROLL_DIRECTIONS = {
   UP: 'up',
-  DOWN: 'down',
+  DOWN: 'down'
 };
 
 function ScrollHelper(document) {
@@ -14,7 +14,7 @@ function ScrollHelper(document) {
     const { clientHeight, scrollHeight } = this.scrollable;
     return {
       min: 0,
-      max: scrollHeight - clientHeight,
+      max: scrollHeight - clientHeight
     };
   };
 

@@ -5,7 +5,7 @@ const defaultStyle = {
   top: 0,
   right: 0,
   left: 0,
-  transition: 'top 100ms ease-in',
+  transition: 'top 100ms ease-in'
 };
 
 /* eslint-disable no-param-reassign */
@@ -16,7 +16,7 @@ function onScrollChange(elem, offset) {
       elem.style.top = direction === SCROLL_DIRECTIONS.DOWN ? `-${offset}px` : 0;
     }
   };
-};
+}
 /* eslint-enable no-param-reassign */
 
 export default function applyScrollToStick(elem, offset) {
