@@ -1,0 +1,47 @@
+{
+  "name": "scroll-to-stick",
+  "version": "1.0.0",
+  "description": "A javascript alternative to css sticky and parallax scrolling header like effects",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "rm -rf dist/ && webpack --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dibosh/scroll-to-stick.git"
+  },
+  "keywords": [
+    "sticky",
+    "scroll-to-stick",
+    "parallax",
+    "scrolling",
+    "header"
+  ],
+  "author": "Md Abdul Munim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dibosh/scroll-to-stick/issues"
+  },
+  "homepage": "https://github.com/dibosh/scroll-to-stick#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-react": "^7.18.0",
+    "jest": "^25.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
