@@ -5,6 +5,7 @@ const defaultStyle = {
   top: 0,
   right: 0,
   left: 0,
+  zIndex: 999,
   transition: 'top 100ms ease-in'
 };
 
@@ -27,7 +28,9 @@ function onScrollChange(elem, offset, listener) {
 }
 /* eslint-enable no-param-reassign */
 
-export default function applyScrollToStick(elem, offset, listener) {
+export default function applyScrollToStick(elem, offset, config) {
+  const { listener, threshold } = config || {};
+
   let applyOn = elem;
   if (typeof elem === 'string') {
     applyOn = document.getElementById(elem);
@@ -36,6 +39,10 @@ export default function applyScrollToStick(elem, offset, listener) {
   Object.assign(applyOn.style, defaultStyle);
 
   const scrollHelper = new ScrollHelper(document);
+  if (threshold && typeof threshold === 'number') {
+    scrollHelper.setThreshold(Math.ceil(threshold));
+  }
+
   scrollHelper.attachHook(onScrollChange(applyOn, offset, listener));
 
   return () => {
