@@ -1,11 +1,7 @@
 import applyScrollToStick from './scroll.to.stick';
 import ScrollToStick from './components/scroll.to.stick.react';
 
-const module = {
+export {
   applyScrollToStick,
-  components: {
-    react: ScrollToStick
-  }
+  ScrollToStick
 };
-
-export default module;

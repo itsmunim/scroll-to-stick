@@ -11,7 +11,9 @@ const config = {
   },
   output: {
     path: BUILD_DIR,
-    filename: '[name].js'
+    filename: '[name].js',
+    libraryTarget: 'var',
+    library: 'ScrollToStick'
   },
   module: {
     rules: [
