@@ -1,5 +1,3 @@
-import debounce from 'lodash/debounce';
-
 const SCROLL_DIRECTIONS = {
   UP: 'up',
   DOWN: 'down'
@@ -41,7 +39,7 @@ function ScrollHelper(document) {
     this.lastKnownDirection = direction;
   };
 
-  const onScrollHandler = debounce(onScroll, 10);
+  const onScrollHandler = onScroll;
   document.addEventListener('scroll', onScrollHandler);
 
   /**

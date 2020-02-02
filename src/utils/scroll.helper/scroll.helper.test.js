@@ -1,8 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
 import { ScrollHelper } from './scroll.helper';
 
-jest.useFakeTimers();
-
 describe('ScrollHelper', () => {
   let scrollHelper;
 
@@ -39,7 +37,7 @@ describe('ScrollHelper', () => {
 
     mockDocument.documentElement.scrollTop = 45;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledWith({ delta: 45, direction: 'down', undefined });
   });
 
@@ -49,12 +47,12 @@ describe('ScrollHelper', () => {
 
     mockDocument.documentElement.scrollTop = 45;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledWith({ delta: 45, direction: 'down', lastKnownDirection: undefined });
 
     mockDocument.documentElement.scrollTop = 30;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledWith({ delta: 15, direction: 'up', lastKnownDirection: 'down' });
   });
 
@@ -65,17 +63,17 @@ describe('ScrollHelper', () => {
     scrollHelper.setThreshold(10);
     mockDocument.documentElement.scrollTop = 5;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledTimes(0);
 
     mockDocument.documentElement.scrollTop = 10;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledTimes(0);
 
     mockDocument.documentElement.scrollTop = 21;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalledTimes(1);
   });
 
@@ -85,7 +83,7 @@ describe('ScrollHelper', () => {
 
     mockDocument.documentElement.scrollTop = 20;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     expect(eventHandler).toHaveBeenCalled();
 
     const removeListenerSpy = jest.spyOn(mockDocument, 'removeEventListener');
@@ -94,7 +92,7 @@ describe('ScrollHelper', () => {
 
     mockDocument.documentElement.scrollTop = 40;
     mockDocument.dispatchEvent({ type: 'scroll' });
-    jest.runAllTimers();
+
     // no event handler is registered anymore, so the call count remains same
     expect(eventHandler).toHaveBeenCalledTimes(1);
   });

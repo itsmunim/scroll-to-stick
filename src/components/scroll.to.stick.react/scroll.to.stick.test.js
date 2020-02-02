@@ -2,8 +2,6 @@ import { mount } from 'enzyme';
 import React from 'react';
 import ScrollToStick from './scroll.to.stick';
 
-jest.useFakeTimers();
-
 describe('ScrollToStick', () => {
   let wrapper;
 
@@ -47,7 +45,6 @@ describe('ScrollToStick', () => {
     document.documentElement.scrollTop = 100;
     document.dispatchEvent(new CustomEvent('scroll'));
     const applyOnElem = wrapper.find('#elem-apply-on').get(0).ref.current;
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual('-60px');
   });
 
@@ -60,8 +57,6 @@ describe('ScrollToStick', () => {
     document.dispatchEvent(new CustomEvent('scroll'));
 
     const applyOnElem = wrapper.find('#elem-apply-on').get(0).ref.current;
-    jest.runAllTimers();
-
     expect(applyOnElem.style.top).toEqual('0px');
   });
 
@@ -69,12 +64,10 @@ describe('ScrollToStick', () => {
     document.documentElement.scrollTop = 100;
     document.dispatchEvent(new CustomEvent('scroll'));
     const applyOnElem = wrapper.find('#elem-apply-on').get(0).ref.current;
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual('-60px');
 
     document.documentElement.scrollTop = 150;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual('-60px');
   });
 });

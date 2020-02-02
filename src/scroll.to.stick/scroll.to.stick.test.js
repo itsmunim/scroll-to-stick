@@ -1,7 +1,5 @@
 import applyScrollToStick from './scroll.to.stick';
 
-jest.useFakeTimers();
-
 describe('scroll to stick', () => {
   let listener, offset, applyOnElem;
 
@@ -56,7 +54,6 @@ describe('scroll to stick', () => {
   it('should move the element upwards by offset amount when downwards scroll happen', () => {
     document.documentElement.scrollTop = 100;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual(`-${offset}px`);
   });
 
@@ -68,20 +65,16 @@ describe('scroll to stick', () => {
     document.documentElement.scrollTop = 50;
     document.dispatchEvent(new CustomEvent('scroll'));
 
-    jest.runAllTimers();
-
     expect(applyOnElem.style.top).toEqual('0px');
   });
 
   it('should not change the element position if the consecutive scrolls are on same direction', () => {
     document.documentElement.scrollTop = 100;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual(`-${offset}px`);
 
     document.documentElement.scrollTop = 150;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
     expect(applyOnElem.style.top).toEqual(`-${offset}px`);
   });
 
@@ -94,11 +87,9 @@ describe('scroll to stick', () => {
     expectedStatus = 'stuck-top';
     document.documentElement.scrollTop = 100;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
 
     expectedStatus = 'normal';
     document.documentElement.scrollTop = 55;
     document.dispatchEvent(new CustomEvent('scroll'));
-    jest.runAllTimers();
   });
 });
