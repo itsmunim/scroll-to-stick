@@ -9,17 +9,25 @@ const defaultStyle = {
 };
 
 /* eslint-disable no-param-reassign */
-function onScrollChange(elem, offset) {
+function onScrollChange(elem, offset, listener) {
   return (scrollInfo) => {
     const { direction, lastKnownDirection } = scrollInfo;
+    listener = listener || (() => { });
+
     if (direction !== lastKnownDirection) {
-      elem.style.top = direction === SCROLL_DIRECTIONS.DOWN ? `-${offset}px` : 0;
+      if (direction === SCROLL_DIRECTIONS.DOWN) {
+        elem.style.top = `-${offset}px`;
+        listener({ status: 'stuck-top' });
+      } else {
+        elem.style.top = 0;
+        listener({ status: 'normal' });
+      }
     }
   };
 }
 /* eslint-enable no-param-reassign */
 
-export default function applyScrollToStick(elem, offset) {
+export default function applyScrollToStick(elem, offset, listener) {
   let applyOn = elem;
   if (typeof elem === 'string') {
     applyOn = document.getElementById(elem);
@@ -28,7 +36,7 @@ export default function applyScrollToStick(elem, offset) {
   Object.assign(applyOn.style, defaultStyle);
 
   const scrollHelper = new ScrollHelper(document);
-  scrollHelper.attachHook(onScrollChange(applyOn, offset));
+  scrollHelper.attachHook(onScrollChange(applyOn, offset, listener));
 
   return () => {
     scrollHelper.decommission();
