@@ -25,7 +25,7 @@ export default function applyScrollToStick(elem, offset) {
     applyOn = document.getElementById(elem);
   }
 
-  Object.assign(elem.style, defaultStyle);
+  Object.assign(applyOn.style, defaultStyle);
 
   const scrollHelper = new ScrollHelper(document);
   scrollHelper.attachHook(onScrollChange(applyOn, offset));
