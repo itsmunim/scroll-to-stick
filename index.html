@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ScrollToStick.js</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="www/styles/common.css">
+  <link rel="stylesheet" href="www/styles/home.css">
+
+  <meta name="description" content="A Javascript way to creatr parallax header effects.">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="ScrollToStick" />
+  <meta property="og:description" content="A Javascript way to create parallax header effects." />
+</head>
+
+<body class="home-page">
+  <div id="hero-wrapper" class="hero-wrapper">
+    <div id="hero" class="container hero">
+      <div class="d-flex justify-content-between mb-3 flex-md-row flex-column text-center text-md-left">
+        <h1 class="title">
+          <img src="www/assets/icon_sts.png" height="70px"> ScrollToStick.js
+        </h1>
+        <a href="https://github.com/dibosh/scroll-to-stick.git"
+          class="btn btn-outline-primary btn-view-on-github my-auto mx-0">
+          👊 View on Github
+        </a>
+      </div>
+      <h3 class="subtitle text-center text-md-left">A Javascript way to create parallax header effects.</h3>
+    </div>
+  </div>
+
+  <!-- usage -->
+  <div class="container example-section">
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <h4 class="pb-3">🤷‍♀️ How to use</h4>
+        <p>
+          Using the javascript function directly is your best way to make use of this
+          library. The layout for this kind of feature is important. Normally you should have
+          a layout like below-
+        </p>
+
+        <p>
+          <script src="https://gist.github.com/dibosh/d0058644dde3343867efd1cf546d9800.js"></script>
+        </p>
+
+        <p>
+          Take a note on how we have attached an id to <code>header-wrap</code> element.
+          This is important. As the javascript function <code>applyScrollToStick</code> either
+          takes an element or id of an element.
+        </p>
+
+        <p>
+          The second param of the function is <code>offset</code>. Determines how much the header-wrap
+          should move back and forth when you do scrolling. In the given layout, we want it to
+          move back and forth the by the amount of height <code>header</code> is occupying. So, we
+          can do-
+        </p>
+
+        <p>
+          <script src="https://gist.github.com/dibosh/5897f4b635c9e6e936e4ffd064c50fa7.js"></script>
+        </p>
+      </div>
+      <div class="col-md-12 col-lg-6 frame-holder">
+        <iframe class="frame" src="www/pages/example.html"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- getting started -->
+  <div id="getting-started" class="container getting-started">
+    <h4 class="pb-4">🤦‍♀️ Wait! I need to install it!</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <p>
+          To install-
+        <pre>$ npm install scroll-to-stick</pre>
+        </p>
+        <p>
+          Then you can either <code>import</code> the function in your code-
+        <pre>import {applyScrollToStick} from 'scroll-to-stick';</pre>
+        </p>
+        <p>
+          Or simply add the file as <code>script</code> tag-
+        <pre>&lt;script src="scroll-to-stick/dist/scorll.to.stick.js"&gt;&lt;script&gt;</pre>
+        </p>
+        <p>
+          If you want to use it in your react project, you can simply import the react
+          component <code>ScrollToStick</code>-
+        <pre>import {ScrollToStick} from 'scroll-to-stick';</pre>
+        Then use it the way it's shown in sample code on the right.
+        </p>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <script src="https://gist.github.com/dibosh/b4dfd38a0001e1ec52db53b525ff43c3.js"></script>
+        <script src="https://gist.github.com/dibosh/944c05b5ba87a48803ecd9cab38862e7.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <!-- advanced -->
+  <div class="container advanced-usage">
+    <h4 class="pb-4">🦸‍♀️ Advanced stuffs!</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <p>
+          The function can take a <code>listener</code> function, which may expect to receive
+          a status. Either of <code>normal</code> or <code>stuck-top</code>.
+        </p>
+        <p>
+          Using the status you may decide to add your custom classes or change some behaviour or
+          apply some animation - you name it. This is the best way to control what happens when
+          the scroll to stick component is in normal state or in stuck on top. The code snippet on right
+          is used in the demo above 👉
+        </p>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <script src="https://gist.github.com/dibosh/a2a5b4b350ef5eed05db19e22ea97d5a.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <div class="container p-4">
+    <p class="text-center">
+      Made with 🧡 and ☕
+    </p>
+  </div>
+
+  <script src="dist/scroll.to.stick.js"></script>
+  <script src="www/scripts/home.js"></script>
+</body>
+
+</html>
