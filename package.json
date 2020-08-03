@@ -1,6 +1,6 @@
 {
   "name": "scroll-to-stick",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A javascript alternative to css sticky and parallax scrolling header like effects",
   "main": "dist/index.js",
   "jest": {
