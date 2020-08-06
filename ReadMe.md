@@ -1,4 +1,5 @@
-![downloads](https://img.shields.io/npm/dm/scroll-to-stick?style=flat-square)
+![downloads](https://img.shields.io/npm/dy/scroll-to-stick?style=flat-square)
+![downloads](https://img.shields.io/npm/dw/scroll-to-stick?style=flat-square)
 ![version](https://img.shields.io/npm/v/scroll-to-stick?color=green&style=flat-square)
 
 <p align="center">
@@ -35,6 +36,12 @@ If you are building a mobile-first webapp and you would like to have a parallax 
 ## Usage
 
 - Check the [webpage](https://dibosh.github.io/scroll-to-stick/) for detailed usage guide.
+
+## Used In
+
+Create an issue or submit a PR to include your webpage, if `scroll-to-stick` is used there.
+
+- [OurDaily](https://ourdaily.co/)
 
 
 ## Feedback
